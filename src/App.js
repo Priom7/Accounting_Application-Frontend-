@@ -1,25 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import About from "./menu/pages/About";
+import MainMenu from "./menu/pages/MainMenu";
+import Groups from "./menu/pages/Groups";
+import "./App.css";
+import GroupAccounts from "./menu/pages/GroupAccounts";
+import AccountTransactions from "./menu/pages/AccountTransactions";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className='App'>
+        <Switch>
+          <Route exact path='/' component={About}></Route>
+          <Route path='/menu' component={MainMenu}></Route>
+          <Route path='/groups' component={Groups}></Route>
+          <Route
+            path='/:groupId/accounts'
+            component={GroupAccounts}
+          ></Route>
+          <Route
+            path='/:accountId/transactions'
+            component={AccountTransactions}
+          ></Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
